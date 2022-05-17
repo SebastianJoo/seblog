@@ -11,4 +11,6 @@ public class Comment
     public string Author { get; set; }
     public string Content { get; set; }
     public DateTime CreationDate { get; set; }
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
 }
