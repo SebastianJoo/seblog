@@ -9,10 +9,10 @@ interface BlogPostProps {
 }
 
 const BlogPost = ({ blogPost }: BlogPostProps) => {
-  const [isCommenting, setIsCommenting] = useState<boolean>(false);
+  const [displayComments, setDisplayComments] = useState<boolean>(false);
 
-  const handleCommenting = () => {
-    setIsCommenting(!isCommenting);
+  const handleDisplayComments = () => {
+    setDisplayComments(!displayComments);
   };
 
   return (
@@ -27,12 +27,12 @@ const BlogPost = ({ blogPost }: BlogPostProps) => {
       }}
     >
       <Paper elevation={2}>
-        <Box>
+        <>
           <Typography variant="h3" marginBottom={1} paddingTop={2}>
             {blogPost.title}
           </Typography>
-        </Box>
-        <Box>
+        </>
+        <>
           <Typography
             variant="body1"
             component="p"
@@ -42,23 +42,19 @@ const BlogPost = ({ blogPost }: BlogPostProps) => {
             {blogPost.content}
           </Typography>
           <Divider />
-          {blogPost.comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
-          {!isCommenting ? (
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button
-                variant="contained"
-                sx={{ margin: "1rem" }}
-                onClick={handleCommenting}
-              >
-                Comment
-              </Button>
+
+          <Button onClick={handleDisplayComments}>Comments</Button>
+
+          {displayComments &&
+            blogPost.comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} />
+            ))}
+          {displayComments && (
+            <Box>
+              <CommentBox />
             </Box>
-          ) : (
-            <CommentBox onCommenting={handleCommenting} />
           )}
-        </Box>
+        </>
       </Paper>
     </Box>
   );

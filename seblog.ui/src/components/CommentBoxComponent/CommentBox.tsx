@@ -1,15 +1,20 @@
 import { Box, Button, Divider, TextField } from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import React from "react";
+import React, { useState } from "react";
 
-interface CommentBoxProps {
-  onCommenting: () => void;
-}
-
-const CommentBox = ({ onCommenting }: CommentBoxProps) => {
+const CommentBox = () => {
+  const [input, setInput] = useState<string>("");
   const handleSubmit = () => {
-    console.log("submitted");
-    onCommenting();
+    if (input.length > 0) {
+      console.log("submitted");
+      console.log(input);
+      setInput("");
+    } else {
+      console.log("no input");
+    }
+  };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
   };
 
   return (
@@ -19,6 +24,7 @@ const CommentBox = ({ onCommenting }: CommentBoxProps) => {
         justifyContent: "flex-end",
         flexDirection: "column",
       }}
+      component="form"
     >
       <Divider />
       <TextField
@@ -30,6 +36,8 @@ const CommentBox = ({ onCommenting }: CommentBoxProps) => {
           margin: "0.5rem",
         }}
         multiline
+        onChange={handleChange}
+        value={input}
       />
       <Box
         sx={{
