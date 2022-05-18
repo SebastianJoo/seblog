@@ -6,6 +6,7 @@ import Sidebar from "./components/SidebarComponent/Sidebar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ColorModeContext } from "./context/colorModeContext";
 import "./App.css";
+import BlogCreation from "./components/BlogCreationComponent/BlogCreation";
 require("dotenv").config();
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingContainer />} />
             <Route path="/blog" element={<BlogContainer />} />
+            <Route path="/create" element={<BlogCreation />} />
             <Route path="*" element={<LandingContainer />} />
           </Routes>
         </ThemeProvider>
