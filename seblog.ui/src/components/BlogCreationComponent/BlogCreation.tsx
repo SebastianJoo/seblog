@@ -33,7 +33,7 @@ const BlogCreation = () => {
           <TextField
             variant="outlined"
             label="Content"
-            minRows={8}
+            minRows={10}
             sx={{
               width: "90%",
               margin: "0.5rem",
