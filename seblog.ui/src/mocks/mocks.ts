@@ -1,6 +1,6 @@
-import { BlogCommentData, BlogPostData } from "../types/blogPostTypes";
+import { ApiBlogPost, ApiCommentData } from "../types/blogPostTypes";
 
-export const blogCommentMock: BlogCommentData[] = [
+export const blogCommentMock: ApiCommentData[] = [
   {
     id: "1",
     author: "John Doe",
@@ -15,7 +15,7 @@ export const blogCommentMock: BlogCommentData[] = [
   },
 ];
 
-export const blogPostsMock: BlogPostData[] = [
+export const blogPostsMock: ApiBlogPost[] = [
   {
     id: "1",
     title: "Hello what is up",
