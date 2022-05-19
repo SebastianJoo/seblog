@@ -1,7 +1,11 @@
-import { Box, Paper, TextField } from "@mui/material";
+import { Box, Button, Paper, TextField } from "@mui/material";
 import React from "react";
 
 const BlogCreation = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    
+  };
+
   return (
     <Box
       sx={{
@@ -40,6 +44,11 @@ const BlogCreation = () => {
             }}
             multiline
           />
+        </Box>
+        <Box display={"flex"} alignItems={"flex-end"} flexDirection={"column"}>
+          <Button variant="contained" sx={{ margin: "0 1rem 1rem 0" }}>
+            Create post
+          </Button>
         </Box>
       </Paper>
     </Box>
