@@ -1,6 +1,8 @@
-import { Box, Button, Paper, TextField } from "@mui/material";
 import React from "react";
+import { Box, Button, Paper, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { postBlog } from "../../api/blogPost";
+import { BlogPostData } from "../../types/blogPostTypes";
 
 const BlogCreation = () => {
   const [contentInput, setContentInput] = React.useState<string>("");
@@ -9,11 +11,13 @@ const BlogCreation = () => {
   let navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (contentInput.length > 0) {
-      console.log(contentInput);
-      console.log(titleInput);
-      setContentInput("");
-      setTitleInput("");
+    if (contentInput.length > 0 && titleInput.length > 0) {
+      const blog: BlogPostData = {
+        title: titleInput,
+        content: contentInput,
+      };
+
+      postBlog(blog);
       navigate("/blog");
     } else {
       console.log("no input");
