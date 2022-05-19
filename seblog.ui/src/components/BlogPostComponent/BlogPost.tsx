@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Box, Button, Divider, Paper, Typography } from "@mui/material";
-import { BlogPostData } from "../../types/blogPostTypes";
+import { ApiBlogPost } from "../../types/blogPostTypes";
 import CommentBox from "../CommentBoxComponent/CommentBox";
 import Comment from "../CommentComponent/Comment";
 
 interface BlogPostProps {
-  blogPost: BlogPostData;
+  blogPost: ApiBlogPost;
 }
 
 const BlogPost = ({ blogPost }: BlogPostProps) => {

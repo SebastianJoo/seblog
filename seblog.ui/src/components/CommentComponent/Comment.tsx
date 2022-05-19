@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Divider, Typography } from "@mui/material";
-import { BlogCommentData } from "../../types/blogPostTypes";
+import { ApiCommentData } from "../../types/blogPostTypes";
 
 interface CommentProps {
-  comment: BlogCommentData;
+  comment: ApiCommentData;
 }
 
 const Comment = ({ comment }: CommentProps) => {
