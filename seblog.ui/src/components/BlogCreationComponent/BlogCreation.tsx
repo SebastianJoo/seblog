@@ -1,9 +1,29 @@
 import { Box, Button, Paper, TextField } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const BlogCreation = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    
+  const [contentInput, setContentInput] = React.useState<string>("");
+  const [titleInput, setTitleInput] = React.useState<string>("");
+
+  let navigate = useNavigate();
+
+  const handleSubmit = () => {
+    if (contentInput.length > 0) {
+      console.log(contentInput);
+      console.log(titleInput);
+      setContentInput("");
+      setTitleInput("");
+      navigate("/blog");
+    } else {
+      console.log("no input");
+    }
+  };
+  const handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setContentInput(event.target.value);
+  };
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitleInput(event.target.value);
   };
 
   return (
@@ -31,6 +51,7 @@ const BlogCreation = () => {
               margin: "0.5rem",
             }}
             multiline
+            onChange={handleTitleChange}
           />
         </Box>
         <Box alignItems={"flex-start"} display={"flex"}>
@@ -43,10 +64,15 @@ const BlogCreation = () => {
               margin: "0.5rem",
             }}
             multiline
+            onChange={handleContentChange}
           />
         </Box>
         <Box display={"flex"} alignItems={"flex-end"} flexDirection={"column"}>
-          <Button variant="contained" sx={{ margin: "0 1rem 1rem 0" }}>
+          <Button
+            variant="contained"
+            sx={{ margin: "0 1rem 1rem 0" }}
+            onClick={handleSubmit}
+          >
             Create post
           </Button>
         </Box>
