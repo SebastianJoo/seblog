@@ -4,7 +4,20 @@ using seblog.Data;
 using seblog.Service.Interfaces;
 using seblog.Service.Services;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                          policy =>
+                          {
+                              policy.AllowAnyOrigin();
+                              policy.AllowAnyHeader();
+                              policy.AllowAnyMethod();
+                          });
+});
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -14,14 +27,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Configuration.GetConnectionString("SeblogContext");
 
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-   .AddNegotiate();
-
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("SeblogContext")));
+
 builder.Services
     .AddScoped<IBlog, BlogService>()
-    .AddScoped<IComment, CommentService>(); 
+    .AddScoped<IComment, CommentService>();
 
 
 builder.Services.AddAuthorization(options =>
@@ -40,10 +51,11 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseCors(MyAllowSpecificOrigins);
+//app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
 
