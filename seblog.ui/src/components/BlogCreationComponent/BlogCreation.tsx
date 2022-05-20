@@ -10,8 +10,6 @@ const BlogCreation = () => {
 
   let navigate = useNavigate();
 
-  // test git
-
   const handleSubmit = () => {
     if (contentInput.length > 0 && titleInput.length > 0) {
       const blog: BlogPostData = {
