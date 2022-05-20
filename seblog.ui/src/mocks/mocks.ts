@@ -7,6 +7,7 @@ export const blogCommentMock: ApiCommentData[] = [
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus risus, porta vel mattis eget,",
     blogPostId: "1",
+    creationDate: "2020-01-01",
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ export const blogCommentMock: ApiCommentData[] = [
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus risus, porta vel mattis eget,",
     blogPostId: "1",
+    creationDate: "2020-02-01",
   },
 ];
 
@@ -24,11 +26,13 @@ export const blogPostsMock: ApiBlogPost[] = [
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus risus, porta vel mattis eget, eleifend non ligula. Pellentesque eleifend dolor non facilisis faucibus. Suspendisse mollis interdum diam ut fermentum. Vestibulum mauris nibh, viverra ac lectus et, consequat viverra massa. Vestibulum ac porta est, at posuere erat. Pellentesque dapibus, enim et fringilla efficitur, ligula arcu feugiat purus, pretium luctus ante ligula in diam. Sed metus mauris, dictum congue leo posuere, placerat scelerisque sapien. Curabitur felis quam, laoreet sed mi nec, maximus lobortis purus. Curabitur in neque rutrum, suscipit nisl a, ullamcorper turpi",
     comments: blogCommentMock,
+    creationDate: "2020-03-01",
   },
   {
     id: "2",
     title: "Second title",
     content: "Second content",
     comments: blogCommentMock,
+    creationDate: "2020-05-01",
   },
 ];
