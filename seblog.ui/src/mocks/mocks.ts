@@ -6,12 +6,14 @@ export const blogCommentMock: ApiCommentData[] = [
     author: "John Doe",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus risus, porta vel mattis eget,",
+    blogPostId: "1",
   },
   {
     id: "2",
     author: "Jane Doedoe",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc metus risus, porta vel mattis eget,",
+    blogPostId: "1",
   },
 ];
 
