@@ -18,3 +18,9 @@ export interface BlogPostData {
   title: string;
   content: string;
 }
+
+export interface CommentData {
+  author: string;
+  content: string;
+  blogId: string;
+}

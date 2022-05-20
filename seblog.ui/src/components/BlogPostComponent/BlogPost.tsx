@@ -49,7 +49,7 @@ const BlogPost = ({ blogPost }: BlogPostProps) => {
             <Button onClick={handleDisplayComments}>Comments</Button>
             {displayComments && (
               <Box>
-                <CommentBox />
+                <CommentBox blogPostId={blogPost.id} />
               </Box>
             )}
           </>
@@ -94,7 +94,7 @@ const BlogPost = ({ blogPost }: BlogPostProps) => {
             ))}
           {displayComments && (
             <Box>
-              <CommentBox postId={blogPost.id} />
+              <CommentBox blogPostId={blogPost.id} />
             </Box>
           )}
         </>
