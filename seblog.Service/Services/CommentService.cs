@@ -11,38 +11,38 @@ using System.Threading.Tasks;
 namespace seblog.Service.Services;
 public class CommentService : IComment
 {
-    private readonly AppDbContext _appDbContext;
+    private readonly AppDbContext _context;
     public CommentService(AppDbContext context)
     {
-        _appDbContext = context;
+        _context = context;
     }
-    public async Task AddAsync(Comment comment)
+    public async Task AddCommentAsync(Comment comment)
     {
-        _appDbContext.Comments.Add(comment);
-        await _appDbContext.SaveChangesAsync();
+        _context.Comments.Add(comment);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(int id)
     {
-        var comment = await _appDbContext.Comments.FindAsync(id);
-       if (comment is not null) _appDbContext.Comments.Remove(comment);
-        await _appDbContext.SaveChangesAsync();
+        var comment = await _context.Comments.FindAsync(id);
+       if (comment is not null) _context.Comments.Remove(comment);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<IEnumerable<Comment>> GetAllAsync()
     {
-        return await _appDbContext.Comments.ToListAsync();
+        return await _context.Comments.ToListAsync();
     }
 
     public async Task<Comment> GetByIdAsync(int id)
     {
-        var comment = await _appDbContext.Comments.FirstOrDefaultAsync(c => c.Id == id);
+        var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
         return comment;
     }
 
     public async Task UpdateAsync(Comment comment)
     {
-        _appDbContext.Comments.Update(comment);
-        await _appDbContext.SaveChangesAsync();
+        _context.Comments.Update(comment);
+        await _context.SaveChangesAsync();
     }
 }

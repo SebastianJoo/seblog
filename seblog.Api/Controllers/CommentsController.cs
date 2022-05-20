@@ -32,21 +32,22 @@ namespace seblog.Api.Controllers
 
         // POST api/<CommentsController>
         [HttpPost]
-        public async void Post(Comment comment)
+        public async Task Post(Comment comment)
         {
-            await _commentService.AddAsync(comment);
+            comment.CreationDate = DateTime.Now;
+            await _commentService.AddCommentAsync(comment);
         }
 
         // PUT api/<CommentsController>/5
         [HttpPut("{id}")]
-        public async void Put(Comment comment)
+        public async Task Put(Comment comment)
         {
             await _commentService.UpdateAsync(comment);
         }
     
         // DELETE api/<CommentsController>/5
         [HttpDelete("{id}")]
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             await _commentService.DeleteAsync(id);
         }

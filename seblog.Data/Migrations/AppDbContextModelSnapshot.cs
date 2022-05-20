@@ -77,13 +77,11 @@ namespace seblog.Data.Migrations
 
             modelBuilder.Entity("seblog.Data.Models.Comment", b =>
                 {
-                    b.HasOne("seblog.Data.Models.Blog", "Blog")
+                    b.HasOne("seblog.Data.Models.Blog", null)
                         .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("seblog.Data.Models.Blog", b =>

@@ -12,14 +12,14 @@ using seblog.Data;
 namespace seblog.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211117234236_2.0")]
-    partial class _20
+    [Migration("20220520212121_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -31,22 +31,6 @@ namespace seblog.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("seblog.Data.Models.BlogPost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -61,25 +45,50 @@ namespace seblog.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("BlogPosts");
+                    b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("seblog.Data.Models.BlogPost", b =>
+            modelBuilder.Entity("seblog.Data.Models.Comment", b =>
                 {
-                    b.HasOne("seblog.Data.Models.Blog", "Blog")
-                        .WithMany("BlogPosts")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("seblog.Data.Models.Comment", b =>
+                {
+                    b.HasOne("seblog.Data.Models.Blog", null)
+                        .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("seblog.Data.Models.Blog", b =>
                 {
-                    b.Navigation("BlogPosts");
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }
