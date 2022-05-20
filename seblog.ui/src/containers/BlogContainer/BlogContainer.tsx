@@ -29,9 +29,16 @@ const BlogContainer = () => {
   return (
     <>
       <div className={styles["BlogContainer"]}>
-        {blogPosts.map((blogPost) => {
-          return <BlogPost key={blogPost.id} blogPost={blogPost} />;
-        })}
+        {blogPosts
+          .sort((a, b) => {
+            return (
+              new Date(b.creationDate).valueOf() -
+              new Date(a.creationDate).valueOf()
+            );
+          })
+          .map((blogPost) => {
+            return <BlogPost key={blogPost.id} blogPost={blogPost} />;
+          })}
       </div>
     </>
   );
