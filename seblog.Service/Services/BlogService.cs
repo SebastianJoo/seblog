@@ -1,4 +1,4 @@
-﻿using  Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using seblog.Data;
 using seblog.Data.Models;
 using seblog.Service.Interfaces;
@@ -20,7 +20,9 @@ public class BlogService : IBlog
     }
     public async Task<IEnumerable<Blog>> GetAllAsync()
     {
-        return await _context.Blogs.ToListAsync();
+        return await _context.Blogs
+            .Include(b => b.Comments)
+            .ToListAsync();
     }
     public async Task DeleteAsync(int id)
     {

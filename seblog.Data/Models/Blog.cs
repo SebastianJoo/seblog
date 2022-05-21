@@ -12,5 +12,5 @@ public class Blog
     public string Title { get; set; }
     public string Content { get; set; }
     public DateTime CreationDate { get; set; }
-    public IEnumerable<Comment>? Comments { get; set; }
+    public virtual IEnumerable<Comment>? Comments { get; set; }
 }
