@@ -13,5 +13,5 @@ public interface IComment
     Task AddCommentAsync(Comment comment);
     Task UpdateAsync(Comment comment);
     Task DeleteAsync(int id);
-
+    Task<IEnumerable<Comment>> GetCommentsByBlogPostIdAsync(int blogPostId);
 }

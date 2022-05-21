@@ -45,4 +45,9 @@ public class CommentService : IComment
         _context.Comments.Update(comment);
         await _context.SaveChangesAsync();
     }
+    public async Task<IEnumerable<Comment>> GetCommentsByBlogPostIdAsync(int blogPostId)
+    {
+        var comments = await _context.Comments.Where(c => c.Id == blogPostId).ToListAsync();
+        return comments; 
+    }
 }
